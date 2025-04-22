@@ -14,6 +14,10 @@ namespace modul6_2311104057
 
         public SayaTubeUser(string username)
         {
+            if (string.IsNullOrEmpty(username))
+                throw new ArgumentException("Username tidak boleh kosong");
+            if (username.Length > 100)
+                throw new ArgumentException("Username tidak boleh lebih dari 100 karakter");
             this.id = new Random().Next(10000, 99999);
             this.username = username;
             this.uploadedVideos = new List<SayaTubeVideo>();
@@ -21,7 +25,21 @@ namespace modul6_2311104057
 
         public void addVideo(SayaTubeVideo video)
         {
-            uploadedVideos.Add(video);
+            if(video == null)
+                throw new ArgumentNullException("Video tidak boleh kosong");
+            if (video.GetPlayCount() >= int.MaxValue)
+                throw new ArgumentException("Video playcount mendekati batas maksimum integer");
+            try
+            {
+                checked
+                {
+                    uploadedVideos.Add(video);
+                }
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Video list overflow");
+            }
         }
         public int GetTotalVideoCount()
         {
