@@ -12,16 +12,6 @@ namespace tpmodul12_2311104057
 {
     public partial class Form1 : Form
     {
-        private string CariTandaBilangan(int a)
-        {
-            if (a < 0)
-                return "Negatif";
-            else if (a > 0)
-                return "Positif";
-            else
-                return "Nol";
-        }
-
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +21,7 @@ namespace tpmodul12_2311104057
         {
             if (int.TryParse(inputTextBox.Text, out int number))
             {
-                resultLabel.Text = CariTandaBilangan(number);
+                resultLabel.Text = Utility.CariTandaBilangan(number);
             }
             else
             {
@@ -59,6 +49,19 @@ namespace tpmodul12_2311104057
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public static class Utility
+        {
+            public static string CariTandaBilangan(int a)
+            {
+                if (a < 0)
+                    return "Negatif";
+                else if (a > 0)
+                    return "Positif";
+                else
+                    return "Nol";
+            }
         }
     }
 }
