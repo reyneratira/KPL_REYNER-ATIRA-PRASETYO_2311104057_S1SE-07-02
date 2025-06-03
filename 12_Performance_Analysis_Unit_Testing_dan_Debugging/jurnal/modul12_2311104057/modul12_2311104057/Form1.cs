@@ -16,5 +16,21 @@ namespace modul12_2311104057
         {
             InitializeComponent();
         }
+
+        private void buttonHitung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a = int.Parse(textBoxA.Text);
+                int b = int.Parse(textBoxB.Text);
+                int hasil = Utilities.CariNilaiPangkat(a, b);
+                labelOutput.Text = $"{hasil}";
+            }
+            catch (Exception ex)
+            {
+                labelOutput.Text = "Input tidak valid";
+            }
+
+        }
     }
 }
